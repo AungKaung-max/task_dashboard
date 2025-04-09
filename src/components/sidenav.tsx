@@ -8,6 +8,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 import BuildIcon from "@mui/icons-material/Build";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
@@ -20,6 +21,60 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import UpdateIcon from "@mui/icons-material/Update";
 
 export default function SideNav() {
+  // Task links data
+  const taskLinks = [
+    {
+      text: "To Do",
+      icon: <CheckBoxIcon fontSize="small" />,
+      path: "/to-do",
+    },
+    {
+      text: "In Progress",
+      icon: <LoopIcon fontSize="small" />,
+      path: "/create-dashboard",
+    },
+    { text: "Done", icon: <DoneAllIcon fontSize="small" />, path: "/done" },
+    {
+      text: "Update Task",
+      icon: <UpdateIcon fontSize="small" />,
+      path: "/update-task",
+    },
+  ];
+
+  // Delete task links data
+  const deleteTaskLinks = [
+    {
+      text: "Marketing",
+      icon: <FolderIcon fontSize="small" />,
+      path: "/marketing",
+    },
+    {
+      text: "Development",
+      icon: <BuildIcon fontSize="small" />,
+      path: "/development",
+    },
+    {
+      text: "Authentication",
+      icon: <LockIcon fontSize="small" />,
+      path: "/authentication",
+    },
+    {
+      text: "Operations",
+      icon: <BuildIcon fontSize="small" />,
+      path: "/operations",
+    },
+  ];
+
+  // Bottom links data
+  const bottomLinks = [
+    {
+      text: "Settings",
+      icon: <SettingsIcon fontSize="small" />,
+      path: "/settings",
+    },
+    { text: "Log out", icon: <LogoutIcon fontSize="small" />, path: "/logout" },
+  ];
+
   return (
     <Box
       sx={{
@@ -45,14 +100,11 @@ export default function SideNav() {
           Task
         </Typography>
         <List>
-          {[
-            { text: "To Do", icon: <CheckBoxIcon fontSize="small" /> },
-            { text: "In Progress", icon: <LoopIcon fontSize="small" /> },
-            { text: "Done", icon: <DoneAllIcon fontSize="small" /> },
-            { text: "Update Task", icon: <UpdateIcon fontSize="small" /> },
-          ].map(({ text, icon }) => (
+          {taskLinks.map(({ text, icon, path }) => (
             <ListItemButton
               key={text}
+              component={Link} // Use Link as component
+              to={path} // Set the path
               sx={{
                 borderRadius: 2,
                 mb: 1,
@@ -86,14 +138,11 @@ export default function SideNav() {
           Delete Task
         </Typography>
         <List>
-          {[
-            { text: "Marketing", icon: <FolderIcon fontSize="small" /> },
-            { text: "Development", icon: <BuildIcon fontSize="small" /> },
-            { text: "Authentication", icon: <LockIcon fontSize="small" /> },
-            { text: "Operations", icon: <BuildIcon fontSize="small" /> },
-          ].map(({ text, icon }) => (
+          {deleteTaskLinks.map(({ text, icon, path }) => (
             <ListItemButton
               key={text}
+              component={Link} // Use Link as component
+              to={path} // Set the path
               sx={{
                 borderRadius: 2,
                 color: "black",
@@ -151,75 +200,35 @@ export default function SideNav() {
         <Divider />
 
         <List>
-          <ListItemButton
-            sx={{
-              color: "black",
-              borderRadius: 2,
-              minHeight: 36,
-              "&:hover": {
-                backgroundColor: "#FFE8CC",
-                color: "#FFA500",
-              },
-            }}
-          >
-            <ListItemIcon sx={{ color: "inherit", minWidth: 32 }}>
-              <SettingsIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText
-              primary="Settings"
-              primaryTypographyProps={{ fontSize: 14 }}
-            />
-          </ListItemButton>
-          <ListItemButton
-            sx={{
-              color: "black",
-              borderRadius: 2,
-              minHeight: 36,
-              "&:hover": {
-                backgroundColor: "#FFE8CC",
-                color: "#FFA500",
-              },
-            }}
-          >
-            <ListItemIcon sx={{ color: "inherit", minWidth: 32 }}>
-              <LogoutIcon fontSize="small" />
-            </ListItemIcon>
-            <ListItemText
-              primary="Log out"
-              primaryTypographyProps={{ fontSize: 14 }}
-            />
-          </ListItemButton>
+          {bottomLinks.map(({ text, icon, path }) => (
+            <ListItemButton
+              key={text}
+              component={Link} // Use Link as component
+              to={path} // Set the path
+              sx={{
+                color: "black",
+                borderRadius: 2,
+                minHeight: 36,
+                "&:hover": {
+                  backgroundColor: "#FFE8CC",
+                  color: "#FFA500",
+                },
+              }}
+            >
+              <ListItemIcon sx={{ color: "inherit", minWidth: 32 }}>
+                {icon}
+              </ListItemIcon>
+              <ListItemText
+                primary={
+                  <Typography fontSize={14} noWrap>
+                    {text}
+                  </Typography>
+                }
+              />
+            </ListItemButton>
+          ))}
         </List>
       </Box>
     </Box>
   );
-}
-
-{
-  /* <ListItemButton
-          sx={{
-            backgroundColor: "#fff",
-            color: "#000",
-            borderRadius: "25px",
-            border: "2px solid #FFA500",
-            mt: 2,
-            mb: 2,
-            minHeight: 36,
-            "&:hover": {
-              backgroundColor: "#FFE8CC",
-              color: "#FFA500",
-            },
-          }}
-        >
-          <ListItemIcon sx={{ color: "inherit", minWidth: 32 }}>
-            <AddCircleIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText
-            primary={
-              <Typography fontSize={14} noWrap>
-                {text}Test
-              </Typography>
-            }
-          />
-        </ListItemButton> */
 }
