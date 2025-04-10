@@ -21,3 +21,135 @@
 //     </div>
 //   );
 // }
+
+
+
+import {
+    //     Box,
+    //     Button,
+    //     Card,
+    //     CardContent,
+    //     IconButton,
+    //     Typography,
+    //     Grid,
+    //   } from "@mui/material";
+    //   import DeleteIcon from "@mui/icons-material/Delete";
+      
+    //   const boards = [
+    //     {
+    //       id: 1,
+    //       name: "Project Alpha",
+    //       lists: [
+    //         {
+    //           name: "To Do",
+    //           tasks: ["Setup repo", "Design UI"]
+    //         },
+    //         {
+    //           name: "In Progress",
+    //           tasks: ["Develop API"]
+    //         },
+    //         {
+    //           name: "Done",
+    //           tasks: ["Create wireframe"]
+    //         }
+    //       ]
+    //     },
+    //     {
+    //       id: 2,
+    //       name: "Marketing Plan",
+    //       lists: [
+    //         {
+    //           name: "To Do",
+    //           tasks: ["Research competitors"]
+    //         },
+    //         {
+    //           name: "In Progress",
+    //           tasks: []
+    //         },
+    //         {
+    //           name: "Done",
+    //           tasks: ["Write pitch"]
+    //         }
+    //       ]
+    //     }
+    //   ];
+      
+    //   export default function BoardLists() {
+    //     return (
+    //       <Box p={4} bgcolor="#f5f5f5" minHeight="100vh">
+    //         <Typography variant="h4" fontWeight="bold" mb={4} color="#333">
+    //            My Project Boards
+    //         </Typography>
+      
+    //         <Grid container spacing={3}>
+    //           {boards.map((board) => (
+    //             <Grid item xs={12} md={6} lg={4} key={board.id}>
+    //               <Card
+    //                 sx={{
+    //                   borderRadius: 3,
+    //                   boxShadow: 3,
+    //                   background: "linear-gradient(145deg, #ffffff, #f0f0f0)",
+    //                 }}
+    //               >
+    //                 <CardContent>
+    //                   <Box
+    //                     display="flex"
+    //                     justifyContent="space-between"
+    //                     alignItems="center"
+    //                     mb={2}
+    //                   >
+    //                     <Typography variant="h6" fontWeight="bold">
+    //                       {board.name}
+    //                     </Typography>
+    //                     <IconButton size="small">
+    //                       <DeleteIcon fontSize="small" />
+    //                     </IconButton>
+    //                   </Box>
+      
+    //                   {board.lists.map((list, idx) => (
+    //                     <Box
+    //                       key={idx}
+    //                       mb={2}
+    //                       p={2}
+    //                       bgcolor="#fff8f0"
+    //                       borderRadius={2}
+    //                       boxShadow={1}
+    //                     >
+    //                       <Typography
+    //                         variant="subtitle2"
+    //                         fontWeight="bold"
+    //                         color="#ff9800"
+    //                         mb={1}
+    //                       >
+    //                         {list.name}
+    //                       </Typography>
+      
+    //                       {list.tasks.length === 0 ? (
+    //                         <Typography
+    //                           variant="body2"
+    //                           color="text.secondary"
+    //                           fontStyle="italic"
+    //                         >
+    //                           No tasks yet
+    //                         </Typography>
+    //                       ) : (
+    //                         list.tasks.map((task, taskIdx) => (
+    //                           <Typography
+    //                             key={taskIdx}
+    //                             variant="body2"
+    //                             sx={{ pl: 1, mb: 0.5 }}
+    //                           >
+    //                             • {task}
+    //                           </Typography>
+    //                         ))
+    //                       )}
+    //                     </Box>
+    //                   ))}
+    //                 </CardContent>
+    //               </Card>
+    //             </Grid>
+    //           ))}
+    //         </Grid>
+    //       </Box>
+    //     );
+    //   }

@@ -10,19 +10,29 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
-import BuildIcon from "@mui/icons-material/Build";
+
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import FolderIcon from "@mui/icons-material/Folder";
-import LockIcon from "@mui/icons-material/Lock";
+
 import LogoutIcon from "@mui/icons-material/Logout";
 import LoopIcon from "@mui/icons-material/Loop";
 import SettingsIcon from "@mui/icons-material/Settings";
 import UpdateIcon from "@mui/icons-material/Update";
 
+import { useLocation } from "react-router-dom";
+
 export default function SideNav() {
+  const pathname = useLocation();
+  const currentPath = pathname.pathname;
+  
   // Task links data
   const taskLinks = [
+    {
+      text: "Create New Board",
+      icon: <FolderIcon fontSize="small" />,
+      path: "/dashboard",
+    },
     {
       text: "To Do",
       icon: <CheckBoxIcon fontSize="small" />,
@@ -31,7 +41,7 @@ export default function SideNav() {
     {
       text: "In Progress",
       icon: <LoopIcon fontSize="small" />,
-      path: "/create-dashboard",
+      path: "/in-progress",
     },
     { text: "Done", icon: <DoneAllIcon fontSize="small" />, path: "/done" },
     {
@@ -42,28 +52,28 @@ export default function SideNav() {
   ];
 
   // Delete task links data
-  const deleteTaskLinks = [
-    {
-      text: "Marketing",
-      icon: <FolderIcon fontSize="small" />,
-      path: "/marketing",
-    },
-    {
-      text: "Development",
-      icon: <BuildIcon fontSize="small" />,
-      path: "/development",
-    },
-    {
-      text: "Authentication",
-      icon: <LockIcon fontSize="small" />,
-      path: "/authentication",
-    },
-    {
-      text: "Operations",
-      icon: <BuildIcon fontSize="small" />,
-      path: "/operations",
-    },
-  ];
+  // const deleteTaskLinks = [
+  //   {
+  //     text: "Marketing",
+  //     icon: <FolderIcon fontSize="small" />,
+  //     path: "/marketing",
+  //   },
+  //   {
+  //     text: "Development",
+  //     icon: <BuildIcon fontSize="small" />,
+  //     path: "/development",
+  //   },
+  //   {
+  //     text: "Authentication",
+  //     icon: <LockIcon fontSize="small" />,
+  //     path: "/authentication",
+  //   },
+  //   {
+  //     text: "Operations",
+  //     icon: <BuildIcon fontSize="small" />,
+  //     path: "/operations",
+  //   },
+  // ];
 
   // Bottom links data
   const bottomLinks = [
@@ -108,7 +118,8 @@ export default function SideNav() {
               sx={{
                 borderRadius: 2,
                 mb: 1,
-                color: "black",
+                backgroundColor: currentPath === path ? "#FFE8CC" : "transparent",
+                color: currentPath === path ? "#FFA500" : "black",
                 minHeight: 36,
                 "&:hover": {
                   backgroundColor: "#FFE8CC",
@@ -135,9 +146,9 @@ export default function SideNav() {
           variant="subtitle2"
           sx={{ color: "#666", fontWeight: 500, px: 1, mt: 2, mb: 1 }}
         >
-          Delete Task
+          Profile
         </Typography>
-        <List>
+        {/* <List>
           {deleteTaskLinks.map(({ text, icon, path }) => (
             <ListItemButton
               key={text}
@@ -165,7 +176,7 @@ export default function SideNav() {
               />
             </ListItemButton>
           ))}
-        </List>
+        </List> */}
       </Box>
 
       {/* Bottom User Info + Settings */}
