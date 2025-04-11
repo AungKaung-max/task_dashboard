@@ -8,8 +8,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
-
+import { Link } from "react-router-dom";
 
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
@@ -25,8 +24,7 @@ import { useLocation } from "react-router-dom";
 export default function SideNav() {
   const pathname = useLocation();
   const currentPath = pathname.pathname;
-  
-  // Task links data
+
   const taskLinks = [
     {
       text: "Create New Board",
@@ -51,38 +49,13 @@ export default function SideNav() {
     },
   ];
 
-  // Delete task links data
-  // const deleteTaskLinks = [
-  //   {
-  //     text: "Marketing",
-  //     icon: <FolderIcon fontSize="small" />,
-  //     path: "/marketing",
-  //   },
-  //   {
-  //     text: "Development",
-  //     icon: <BuildIcon fontSize="small" />,
-  //     path: "/development",
-  //   },
-  //   {
-  //     text: "Authentication",
-  //     icon: <LockIcon fontSize="small" />,
-  //     path: "/authentication",
-  //   },
-  //   {
-  //     text: "Operations",
-  //     icon: <BuildIcon fontSize="small" />,
-  //     path: "/operations",
-  //   },
-  // ];
-
-  // Bottom links data
   const bottomLinks = [
     {
       text: "Settings",
       icon: <SettingsIcon fontSize="small" />,
       path: "/settings",
     },
-    { text: "Log out", icon: <LogoutIcon fontSize="small" />, path: "/logout" },
+    { text: "Log out", icon: <LogoutIcon fontSize="small" />, path: "/login" },
   ];
 
   return (
@@ -118,7 +91,8 @@ export default function SideNav() {
               sx={{
                 borderRadius: 2,
                 mb: 1,
-                backgroundColor: currentPath === path ? "#FFE8CC" : "transparent",
+                backgroundColor:
+                  currentPath === path ? "#FFE8CC" : "transparent",
                 color: currentPath === path ? "#FFA500" : "black",
                 minHeight: 36,
                 "&:hover": {
@@ -141,47 +115,15 @@ export default function SideNav() {
           ))}
         </List>
 
-        {/* Divider Section */}
         <Typography
           variant="subtitle2"
           sx={{ color: "#666", fontWeight: 500, px: 1, mt: 2, mb: 1 }}
         >
           Profile
         </Typography>
-        {/* <List>
-          {deleteTaskLinks.map(({ text, icon, path }) => (
-            <ListItemButton
-              key={text}
-              component={Link} // Use Link as component
-              to={path} // Set the path
-              sx={{
-                borderRadius: 2,
-                color: "black",
-                minHeight: 36,
-                "&:hover": {
-                  backgroundColor: "#FFE8CC",
-                  color: "#FFA500",
-                },
-              }}
-            >
-              <ListItemIcon sx={{ color: "inherit", minWidth: 32 }}>
-                {icon}
-              </ListItemIcon>
-              <ListItemText
-                primary={
-                  <Typography fontSize={14} noWrap>
-                    {text}
-                  </Typography>
-                }
-              />
-            </ListItemButton>
-          ))}
-        </List> */}
       </Box>
 
-      {/* Bottom User Info + Settings */}
       <Box>
-        {/* User Card */}
         <Box
           sx={{
             backgroundColor: "#EEDFCC",
@@ -211,33 +153,63 @@ export default function SideNav() {
         <Divider />
 
         <List>
-          {bottomLinks.map(({ text, icon, path }) => (
-            <ListItemButton
-              key={text}
-              component={Link} // Use Link as component
-              to={path} // Set the path
-              sx={{
-                color: "black",
-                borderRadius: 2,
-                minHeight: 36,
-                "&:hover": {
-                  backgroundColor: "#FFE8CC",
-                  color: "#FFA500",
-                },
-              }}
-            >
-              <ListItemIcon sx={{ color: "inherit", minWidth: 32 }}>
-                {icon}
-              </ListItemIcon>
-              <ListItemText
-                primary={
-                  <Typography fontSize={14} noWrap>
-                    {text}
-                  </Typography>
-                }
-              />
-            </ListItemButton>
-          ))}
+          {bottomLinks.map(({ text, icon, path }) =>
+            text === "Log out" ? (
+              <ListItemButton
+                key={text}
+                onClick={() => {
+                  localStorage.clear(); // or use localStorage.removeItem("token");
+                  window.location.href = path; // redirect to login page
+                }}
+                sx={{
+                  color: "black",
+                  borderRadius: 2,
+                  minHeight: 36,
+                  "&:hover": {
+                    backgroundColor: "#FFE8CC",
+                    color: "#FFA500",
+                  },
+                }}
+              >
+                <ListItemIcon sx={{ color: "inherit", minWidth: 32 }}>
+                  {icon}
+                </ListItemIcon>
+                <ListItemText
+                  primary={
+                    <Typography fontSize={14} noWrap>
+                      {text}
+                    </Typography>
+                  }
+                />
+              </ListItemButton>
+            ) : (
+              <ListItemButton
+                key={text}
+                component={Link}
+                to={path}
+                sx={{
+                  color: "black",
+                  borderRadius: 2,
+                  minHeight: 36,
+                  "&:hover": {
+                    backgroundColor: "#FFE8CC",
+                    color: "#FFA500",
+                  },
+                }}
+              >
+                <ListItemIcon sx={{ color: "inherit", minWidth: 32 }}>
+                  {icon}
+                </ListItemIcon>
+                <ListItemText
+                  primary={
+                    <Typography fontSize={14} noWrap>
+                      {text}
+                    </Typography>
+                  }
+                />
+              </ListItemButton>
+            )
+          )}
         </List>
       </Box>
     </Box>

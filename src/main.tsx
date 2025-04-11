@@ -7,13 +7,21 @@ import Dashboard from "./pages/Dashboard.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CreateDashboard from "./pages/CreateDashboard.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import ProtectedRoute from "./components/protectedroutes.tsx";
+import Register from "./pages/Register.tsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
   { path: "/login", element: <Login /> },
-  { path: "/register", element: <div>Register</div> },
-  { path: "/dashboard", element: <Dashboard /> },
-  { path: "/dashboard/create", element: <CreateDashboard /> },
+  { path: "/register", element: <Register /> },
+  {
+    element: <ProtectedRoute />,
+    children: [
+      { path: "/dashboard", element: <Dashboard /> },
+      { path: "/dashboard/create", element: <CreateDashboard /> },
+    ],
+  },
+
   { path: "*", element: <NotFound /> },
 ]);
 

@@ -13,16 +13,18 @@ import axios from "axios";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-const Login = () => {
+const Register = () => {
   const navigate = useNavigate();
 
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
-      const res = await axios.post(`${API_BASE_URL}/api/v1/auth/sign-in`, {
+      const res = await axios.post(`${API_BASE_URL}/api/v1/auth/sign-up`, {
+        name,
         email,
         password,
       });
@@ -31,7 +33,7 @@ const Login = () => {
       localStorage.setItem("token", token);
       navigate("/dashboard");
     } catch (err) {
-      setErrorMsg("Invalid email or password");
+      setErrorMsg("Registration failed. Try again.");
     }
   };
 
@@ -58,7 +60,7 @@ const Login = () => {
         TaskMaster
       </Typography>
       <Typography variant="subtitle1" sx={{ mb: 4, color: "text.secondary" }}>
-        Login to your account
+        Create a new account
       </Typography>
 
       {errorMsg && (
@@ -66,6 +68,15 @@ const Login = () => {
           {errorMsg}
         </Typography>
       )}
+
+      <TextField
+        label="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        variant="outlined"
+        fullWidth
+        sx={{ mb: 2 }}
+      />
 
       <TextField
         label="Email"
@@ -87,7 +98,7 @@ const Login = () => {
       />
 
       <Button
-        onClick={handleLogin}
+        onClick={handleRegister}
         variant="contained"
         fullWidth
         sx={{
@@ -102,12 +113,13 @@ const Login = () => {
           textTransform: "none",
         }}
       >
-        Login
+        Register
       </Button>
 
       <Button
         variant="outlined"
         fullWidth
+        onClick={() => navigate("/")}
         sx={{
           mb: 3,
           borderColor: "#FF6B35",
@@ -120,17 +132,16 @@ const Login = () => {
           fontSize: "1rem",
           textTransform: "none",
         }}
-        onClick={() => navigate("/register")}
       >
-        Register
+        Back to Login
       </Button>
 
       <Divider sx={{ width: "100%", mb: 2 }} />
 
-      <Stack direction="row" justifyContent="space-between" width="100%">
+      <Stack direction="row" justifyContent="center" width="100%">
         <Link
           component={RouterLink}
-          to="#"
+          to="/"
           underline="hover"
           sx={{
             color: "text.secondary",
@@ -140,25 +151,11 @@ const Login = () => {
             fontSize: "1rem",
           }}
         >
-          Forgot password?
-        </Link>
-        <Link
-          component={RouterLink}
-          to="/register"
-          underline="hover"
-          sx={{
-            color: "text.secondary",
-            "&:hover": {
-              color: "#FF6B35",
-            },
-            fontSize: "1rem",
-          }}
-        >
-          Register for new account
+          Already have an account? Login
         </Link>
       </Stack>
     </Paper>
   );
 };
 
-export default Login;
+export default Register;

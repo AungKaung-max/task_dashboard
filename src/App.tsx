@@ -60,24 +60,26 @@ export default function App() {
           >
             Task Board
           </Typography>
-          <Button
-            variant="contained"
-            sx={{
-              mt: 3,
-              px: 5,
-              py: 0.8,
-              borderRadius: 999,
-              backgroundColor: "#f7931e",
-              textTransform: "none",
-              fontWeight: "bold",
-              fontSize: { xs: "0.9rem", md: "1rem" },
-              "&:hover": {
-                backgroundColor: "#e07b00",
-              },
-            }}
-          >
-            <Link to="/login">Start</Link>
-          </Button>
+          <Link to="/login">
+            <Button
+              variant="contained"
+              sx={{
+                mt: 3,
+                px: 5,
+                py: 0.8,
+                borderRadius: 999,
+                backgroundColor: "#f7931e",
+                textTransform: "none",
+                fontWeight: "bold",
+                fontSize: { xs: "0.9rem", md: "1rem" },
+                "&:hover": {
+                  backgroundColor: "#e07b00",
+                },
+              }}
+            >
+              Start
+            </Button>
+          </Link>
         </Box>
       </Box>
     </Container>
