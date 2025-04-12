@@ -26,15 +26,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-
-// <Layout>
-// <Breadcrumb
-//   breadcrumbs={[
-//     { label: "Boards", href: "/dashboard" },
-//     { label: "Create Boards", href: "/dashboard/create", active: true },
-//   ]}
-// />
-// </Layout>
-
-// import Breadcrumb from "../components/breadcrumbs";
-// import Layout from "../layouts/layout";
